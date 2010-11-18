@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.isammoc.zooviewer</groupId>
+  <artifactId>zooviewer</artifactId>
+  <version>0.5-SNAPSHOT</version>
+  <versioning>
+    <versions>
+      <version>0.5-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20101118233326</lastUpdated>
+  </versioning>
+</metadata>
