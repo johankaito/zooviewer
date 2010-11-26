@@ -45,7 +45,6 @@ import net.isammoc.zooviewer.node.JZVNode;
 import net.isammoc.zooviewer.node.ZVNode;
 import net.isammoc.zooviewer.tree.JZVTree;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.lf5.viewer.categoryexplorer.TreeModelAdapter;
 
 public class App {
@@ -83,7 +82,7 @@ public class App {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		BasicConfigurator.configure();
+//		BasicConfigurator.configure();
 		String connexionString = null;
 		if (args.length > 0) {
 			connexionString = args[0];
@@ -115,13 +114,20 @@ public class App {
 		tree.addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
-				if (e.getPath().getLastPathComponent() instanceof ZVNode) {
-					ZVNode node = (ZVNode) e.getPath().getLastPathComponent();
-					System.out.println("Selected : " + node);
-					nodeView.setNode(node);
-				} else {
-					nodeView.setNode(null);
-				}
+			    // Create the array of selections
+                TreePath[] selPaths = tree.getSelectionModel().getSelectionPaths();
+                ZVNode[] nodes = new ZVNode[selPaths.length];
+                for (int i = 0; i < selPaths.length; i++) {
+                    nodes[i] = (ZVNode)selPaths[i].getLastPathComponent();
+                }
+                nodeView.setNodes(nodes);
+//			    if (e.getPath().getLastPathComponent() instanceof ZVNode) {
+//					ZVNode node = (ZVNode) e.getPath().getLastPathComponent();
+//					System.out.println("Selected : " + node);
+//					nodeView.setNode(node);
+//				} else {
+//					nodeView.setNode(null);
+//				}
 			}
 		});
 

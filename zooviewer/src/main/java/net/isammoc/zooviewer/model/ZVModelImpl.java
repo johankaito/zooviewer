@@ -290,11 +290,10 @@ public class ZVModelImpl implements ZVModel {
 	}
 
 	@Override
-	public void deleteNode(String path) {
-		
+	public void deleteNode(ZVNode node) {
+	    String path = node.getPath();
 		System.out.println("Delete requested on node " + path);
 		PathUtils.validatePath(path);
-
 		try {
 			// Checks if the node has children
 			List<String> childNodes = zk.getChildren(path, false);
@@ -304,7 +303,7 @@ public class ZVModelImpl implements ZVModel {
 						.hasNext();) {
 					String nodeName = (String) iterator.next();
 					String childPath = path + ( path.endsWith("/") ? "" : "/" ) + nodeName;
-					deleteNode(childPath);
+					deleteNode(getNode(childPath));
 				}
 			}
 			// finally, delete the node itself
@@ -322,6 +321,14 @@ public class ZVModelImpl implements ZVModel {
 		}
 	}
 
+	@Override
+	public void deleteNodes(ZVNode[] nodes) {
+        for (int i = 0; i < nodes.length; i++) {
+			deleteNode(nodes[i]);
+		}
+		
+	}
+	
 	@Override
 	public void updateData(String path, byte[] data) {
 		try {
