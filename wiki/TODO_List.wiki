@@ -1,0 +1,16 @@
+#summary List of TODOs / enhancements for ZooViewer
+
+= Introduction =
+
+This page details every new feature or existing feature enhancement.<br>
+Accepted TODOs should become issues.
+
+
+= Details =
+
+  # _Copy/Cut-Paste feature_
+   * The user should be able to Cut or Copy a node, and Paste it in another node.<br>
+  # _Save to file / Load from file feature_
+   * The user should be able to save the selected node (and its children) into a file.
+   * The user should be able to load a file and insert the nodes above the selected one.
+  
